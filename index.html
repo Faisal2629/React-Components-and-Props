@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components in React</title>
+  <style>
+    /* Adding simple CSS to style the components */
+    .steps-container {
+      text-align: center;
+      margin-top: 50px;
+      font-family: Arial, sans-serif;
+      background-color: rgb(248,250,252);
+      height: 350px;
+      width: 900px;
+      padding-top: 30px;
+      
+    }
+    .steps-title {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .highlight {
+      color: lightgreen;
+      text-decoration: underline;
+    }
+    .step {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
+    }
+    .step-number {
+      font-size: 1.5em;
+      font-weight: bold;
+      background-color: #e0f7ea;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .step-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .step-description {
+      font-size: 0.9em;
+      color: #555;
+      width: 200px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React, ReactDOM, and Babel for JSX compilation -->
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    // Step Component
+    const Step = ({ number, title, description }) => {
+      return (
+        <div className="step">
+          <div className="step-number">{number}</div>
+          <div className="step-title">{title}</div>
+          <div className="step-description">{description}</div>
+        </div>
+      );
+    };
+
+    // StepsList Component
+    const StepsList = () => {
+      return (
+        <div className="steps-container">
+          <h2 className="steps-title">
+            Getting started in <span className="highlight">3 easy steps</span>
+          </h2>
+          <div className="steps">
+            <Step
+              number="01"
+              title="Find your template"
+              description="Every template is embedded within an iframe, so you can easily check what they look like and test the responsive behavior."
+            />
+            <Step
+              number="02"
+              title="Copy the code"
+              description="Click the code tab to see the actual source code of the template. Copy and paste it into your project and adjust it to your needs."
+            />
+            <Step
+              number="03"
+              title="Enjoy your free time"
+              description="You've just saved yourself a bunch of time not building the same stuff over and over again. Enjoy your free time and build business features."
+            />
+          </div>
+        </div>
+      );
+    };
+
+    // Main App Component
+    const App = () => {
+      return (
+        <StepsList />
+      );
+    };
+
+    // Render the App
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+  </script>
+</body>
+</html>
+
+//Design Choices:
+//1 Component Reusability: Created a Step component that can be reused for different steps by passing props, following the DRY principle.
+//2 Styling: Inline CSS is used for simplicity.
+//3 Props: Each step's content (number, title, description) is passed as props, which makes the component flexible and easy to reuse with different content.
+
